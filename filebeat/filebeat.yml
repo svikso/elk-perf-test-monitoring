@@ -1,0 +1,14 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /usr/share/jmeter/*.csv
+
+fields:
+  source: jmeter
+output.logstash:
+  hosts: ["${LOGSTASH_HOST}"]
+  ssl.certificate_authorities: ["/certs/ca.crt"]
+processors:
+  - drop_fields:
+      fields: ["agent.ephemeral_id", "agent.hostname", "agent.id", "agent.name", "agent.type", "agent.version", "event.original"]

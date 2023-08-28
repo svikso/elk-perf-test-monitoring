@@ -1,0 +1,20 @@
+apiVersion: 1
+
+datasources:
+  - name: TEST_DATA
+    type: elasticsearch
+    url: $ELASTICSEARCH_HOSTS
+    basicAuth: true
+    basicAuthUser: $ELASTIC_GRAFANA_USER
+    withCredentials: true
+    isDefault: true
+    editable: true
+    database: '[logstash-testdata-*]'
+    jsonData:
+      interval: Daily
+      timeField: '@timestamp'
+      tlsAuthWithCACert: true
+      timeInterval: 1m
+    secureJsonData:
+      basicAuthPassword: $ELASTIC_GRAFANA_PASSWORD
+      tlsCACert: $__file{/var/lib/certs/ca/ca.crt}

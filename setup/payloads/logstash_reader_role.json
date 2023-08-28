@@ -1,0 +1,9 @@
+{
+    "cluster": ["manage_index_templates", "monitor", "manage_ilm"], 
+    "indices": [
+      {
+        "names": [ "logstash-*" ], 
+        "privileges": ["read", "view_index_metadata", "monitor"]  
+      }
+    ]
+  }

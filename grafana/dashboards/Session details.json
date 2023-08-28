@@ -1,0 +1,900 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 4,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P57EF6B19493EE18A"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 30,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byType",
+              "options": "number"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "hidden"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "testId.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m",
+                "min_doc_count": "1"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P57EF6B19493EE18A"
+          },
+          "metrics": [
+            {
+              "field": "hit",
+              "id": "1",
+              "type": "max"
+            }
+          ],
+          "query": "testId.keyword: $test_id AND type.keyword: request AND phase.keyword: $phase",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Tests",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P57EF6B19493EE18A"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Requests/Transactions per second",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "reqps"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "VU"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "VU"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "{{type.keyword}}s per second",
+          "bucketAggs": [
+            {
+              "field": "type.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m",
+                "min_doc_count": "1"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P57EF6B19493EE18A"
+          },
+          "metrics": [
+            {
+              "field": "hit",
+              "id": "1",
+              "settings": {
+                "script": "_value/60"
+              },
+              "type": "sum"
+            }
+          ],
+          "query": "testId.keyword: $test_id AND phase.keyword: $phase",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "VU",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m",
+                "min_doc_count": "1"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P57EF6B19493EE18A"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "grpThreads",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "testId.keyword: $test_id AND type.keyword:$type AND phase.keyword: $phase",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Overall requests per second",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P57EF6B19493EE18A"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Response time",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "VU"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "VU"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "min",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "{{metric}} RT",
+          "bucketAggs": [
+            {
+              "field": "testId.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m",
+                "min_doc_count": "1"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P57EF6B19493EE18A"
+          },
+          "metrics": [
+            {
+              "field": "elapsed",
+              "id": "1",
+              "type": "avg"
+            },
+            {
+              "field": "elapsed",
+              "id": "4",
+              "settings": {
+                "percents": [
+                  "50",
+                  "95"
+                ]
+              },
+              "type": "percentiles"
+            }
+          ],
+          "query": "testId.keyword: $test_id AND type.keyword:$type AND phase.keyword: $phase",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "VU",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m",
+                "min_doc_count": "1"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P57EF6B19493EE18A"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "grpThreads",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "testId.keyword: $test_id AND type.keyword:$type AND phase.keyword: $phase",
+          "refId": "B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Overall request response time",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "P57EF6B19493EE18A"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-red",
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "failed"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "semi-dark-green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 11,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "@timestamp"
+          }
+        ]
+      },
+      "pluginVersion": "10.0.3",
+      "targets": [
+        {
+          "alias": "{{name.keyword}}",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P57EF6B19493EE18A"
+          },
+          "metrics": [
+            {
+              "id": "8",
+              "settings": {
+                "limit": "500"
+              },
+              "type": "logs"
+            }
+          ],
+          "query": "testId.keyword:$test_id AND type.keyword:$type AND phase.keyword:$phase AND session.keyword:$session",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "$type Errors breakdown for $test_id test(s)",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "@version": true,
+              "_id": true,
+              "_index": true,
+              "_source": true,
+              "_type": true,
+              "agent": true,
+              "allThreads": true,
+              "bytes": false,
+              "connectTime": false,
+              "ecs.version": true,
+              "elapsed": false,
+              "email": true,
+              "event.original": true,
+              "failed": false,
+              "fields.source": true,
+              "grpThreads": true,
+              "highlight": true,
+              "hit": true,
+              "host.name": true,
+              "idleTime": false,
+              "input.type": true,
+              "latency": false,
+              "log.file.path": true,
+              "log.offset": true,
+              "phase": true,
+              "receivedTimestamp": true,
+              "sentBytes": true,
+              "session": true,
+              "sort": true,
+              "success": true,
+              "tags": true,
+              "testId": true,
+              "timestamp": true,
+              "transactionName": false
+            },
+            "indexByName": {
+              "@timestamp": 0,
+              "@version": 10,
+              "_id": 11,
+              "_index": 12,
+              "_source": 13,
+              "_type": 14,
+              "agent": 15,
+              "allThreads": 16,
+              "bytes": 19,
+              "connectTime": 20,
+              "ecs.version": 21,
+              "elapsed": 22,
+              "email": 9,
+              "event.original": 23,
+              "failed": 5,
+              "fields.source": 24,
+              "grpThreads": 25,
+              "highlight": 26,
+              "hit": 27,
+              "host.name": 28,
+              "idleTime": 29,
+              "input.type": 30,
+              "latency": 31,
+              "log.file.path": 32,
+              "log.offset": 33,
+              "name": 2,
+              "phase": 34,
+              "receivedTimestamp": 35,
+              "responseCode": 7,
+              "responseMessage": 8,
+              "sentBytes": 36,
+              "session": 1,
+              "sort": 37,
+              "success": 6,
+              "tags": 38,
+              "testId": 39,
+              "timestamp": 40,
+              "transactionName": 3,
+              "type": 4,
+              "url": 41,
+              "useCase": 17,
+              "zooId": 18
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": [
+            "00_load_2023-08-13"
+          ],
+          "value": [
+            "00_load_2023-08-13"
+          ]
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "P57EF6B19493EE18A"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"testId.keyword\", \"query\": \"type.keyword: request\"}",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "test_id",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"testId.keyword\", \"query\": \"type.keyword: request\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "P57EF6B19493EE18A"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"phase.keyword\", \"query\": \"testId.keyword:$test_id AND type.keyword: request\"}",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "phase",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"phase.keyword\", \"query\": \"testId.keyword:$test_id AND type.keyword: request\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "type",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "request",
+            "value": "request"
+          },
+          {
+            "selected": false,
+            "text": "transaction",
+            "value": "transaction"
+          }
+        ],
+        "query": "request, transaction",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "00359ee8-7f69-4248-8263-f699c21688b9",
+          "value": "00359ee8-7f69-4248-8263-f699c21688b9"
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "P57EF6B19493EE18A"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"session.keyword\", \"query\": \"testId.keyword:$test_id AND type.keyword: request AND phase.keyword:$phase\"}",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "session",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"session.keyword\", \"query\": \"testId.keyword:$test_id AND type.keyword: request AND phase.keyword:$phase\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2023-08-13T18:54:03.562Z",
+    "to": "2023-08-13T21:51:59.992Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Session details",
+  "uid": "d2e9f7cc-9e5f-4893-900b-5b2da4e06251",
+  "version": 2,
+  "weekStart": ""
+}

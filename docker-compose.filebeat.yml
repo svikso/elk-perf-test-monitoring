@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:${ELK_VERSION}
+    container_name: elk_filebeat
+    network_mode: "host"
+    volumes:
+      - ./secrets/ca/:/certs/
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./sample-data-set:/usr/share/jmeter/:ro
+    environment:
+      LOGSTASH_HOST: ${EXTERNAL_IP}
