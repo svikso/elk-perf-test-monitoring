@@ -64,5 +64,5 @@ By default, the solution doesn't contain any test data.
 To load the default sample test data set:
 
 1. Excute `sudo chmod go-w filebeat/filebeat.yml` to ensure `filebeat\filebeat.yml` has write permission only for the owner
-1. run `docker compose -f docker-compose.filebeat.yml up -d` command from project root folder
-The command starts the Filebeat container that pushes test data from `sample-data-set` folder to the solution.
+1. run `docker compose -f docker-compose.filebeat.yml up -d` command from project root folder. 
+It starts the Filebeat container that pushes test data from `sample-data-set` folder to the solution.
