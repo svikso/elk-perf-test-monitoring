@@ -35,7 +35,7 @@ sequenceDiagram
 
 ## How to run
 
-Set all required environment variables in `.\.env` file and execute `docker compose up -d'
+Set all required environment variables in `.\.env` file and execute `docker compose up -d`
 
 ### Environment variables
 
@@ -66,3 +66,10 @@ To load the default sample test data set:
 1. Excute `sudo chmod go-w filebeat/filebeat.yml` to ensure `filebeat\filebeat.yml` has write permission only for the owner
 1. run `docker compose -f docker-compose.filebeat.yml up -d` command from project root folder. 
 It starts the Filebeat container that pushes test data from `sample-data-set` folder to the solution.
+
+## Grafana dashboards
+
+![Aggregated metrics](https://user-images.githubusercontent.com/22715888/266862000-90a3befd-0e6b-41e7-9d20-020506feaea9.png)
+![Comparison dashboard](https://user-images.githubusercontent.com/22715888/266862041-61a10298-b3db-454d-a37c-6d5206ceb4d9.png)
+![Timeline dashboard](https://user-images.githubusercontent.com/22715888/266862085-ca397680-a09d-4333-875b-61c42e891eea.png)
+![Errors dashboard](https://user-images.githubusercontent.com/22715888/266862152-4334652c-47c3-430d-b2e3-17197e948051.png)

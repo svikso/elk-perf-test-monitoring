@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 7,
   "links": [
     {
       "asDropdown": true,
@@ -1388,7 +1388,7 @@
           "timeField": "@timestamp"
         }
       ],
-      "title": "Failed $type by Use case for $test_id test(s)",
+      "title": "Failed $type by response code for $test_id test(s)",
       "transformations": [
         {
           "id": "organize",
@@ -1650,7 +1650,7 @@
       "type": "table"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -1748,6 +1748,6 @@
   "timezone": "",
   "title": "Errors overview",
   "uid": "b28857ac-69f7-4886-bfd4-23349ea29d72",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
